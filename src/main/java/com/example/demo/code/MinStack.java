@@ -8,8 +8,8 @@ import java.util.Stack;
 
 public class MinStack {
 
-    Stack<Integer> stack1;
-    Stack<Integer> stack2;
+    Stack<Integer> stack1 ;
+    Stack<Integer> stack2 ;
 
     /**
      * initialize your data structure here.
