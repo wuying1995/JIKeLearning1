@@ -7,8 +7,8 @@ import java.util.Stack;
 
 //两个栈实现队列
 public class letcode09 {
-        Stack<Integer> stack1;
-        Stack<Integer> stack2 ;
+        Stack<Integer> stack1 ;
+        Stack<Integer> stack2  ;
 
         public letcode09() {
             stack1 = new Stack<>();
