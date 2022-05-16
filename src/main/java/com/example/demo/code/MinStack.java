@@ -8,8 +8,8 @@ import java.util.Stack;
 
 public class MinStack {
 
-    Stack<Integer> stack1 ;
-    Stack<Integer> stack2 ;
+    Stack<Integer> stack1;
+    Stack<Integer> stack2;
 
     /**
      * initialize your data structure here.
@@ -48,6 +48,31 @@ public class MinStack {
             return Integer.MIN_VALUE;
         }
         return stack2.peek();
+
+    }
+
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
+    public int[] reversePrint(ListNode head) {
+        Stack<Integer> stack = new Stack<>();
+        while (head != null) {
+            stack.push(head.val);
+            head = head.next;
+        }
+        int size = stack.size();
+        int[] result = new int[size];
+        for(int i=0;i<size;i++){
+            result[i]=stack.pop();
+        }
+
+        return result;
 
     }
 
