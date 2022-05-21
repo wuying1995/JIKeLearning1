@@ -10,7 +10,7 @@ import java.util.List;
  * @Version 1.0
  */
 
-@Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    List<UserEntity> findByName(String name);
-}
+//@Repository
+//public interface UserRepository extends JpaRepository<UserEntity, Long> {
+//    List<UserEntity> findByName(String name);
+//}
