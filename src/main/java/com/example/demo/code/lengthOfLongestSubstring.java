@@ -1,8 +1,6 @@
 package com.example.demo.code;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class lengthOfLongestSubstring {
 
@@ -211,41 +209,125 @@ public class lengthOfLongestSubstring {
     }
 
 
-
     // todo  注意要写dummy
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummy=new ListNode(0);
-        dummy.next=head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
 
-        ListNode fast=dummy;
-        ListNode slow=dummy;
-        for(int i=0;i<=n;i++){
-            fast=fast.next;
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+        for (int i = 0; i <= n; i++) {
+            fast = fast.next;
         }
-        if(fast==null){
+        if (fast == null) {
             return head.next;
         }
 
-        while(fast!=null){
-            fast=fast.next;
-            slow=slow.next;
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
         }
-        slow.next=slow.next.next;
+        slow.next = slow.next.next;
 
         return head;
     }
 
 
     public int findRepeatNumber(int[] nums) {
-        Map<Integer,Integer> map=new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-            if(map.containsKey(nums[i])){
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
                 return nums[i];
             }
-            map.put(nums[i],i);
+            map.put(nums[i], i);
         }
 
         return -1;
+
+    }
+
+    public int missingNumber(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != i) {
+                return i;
+            }
+        }
+        // 重点在这个返回值
+        return nums.length;
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    //合并二叉树node.left = mergeTrees(root1.left, root2.left);
+    //        node.right = mergeTrees(root1.right, root2.right);
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if (root1 == null && root2 == null) {
+            return null;
+        }
+
+        if (root1 == null) return root2;
+        if (root2 == null) return root1;
+
+        TreeNode node = new TreeNode(-1);
+        node.val = root1.val + root2.val;
+
+        node.left = mergeTrees(root1.left, root2.left);
+        node.right = mergeTrees(root1.right, root2.right);
+
+        return node;
+    }
+
+    //
+    public int maxSubArray(int[] nums) {
+        int ans = nums[0];
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (sum > 0) {
+                sum += nums[i];
+            } else {
+                sum = nums[i];
+            }
+            ans = Math.max(sum, ans);
+        }
+
+        return ans;
+
+
+    }
+
+    //Input: nums = [4,3,2,7,8,2,3,1]
+    //Output: [5,6]
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> ans=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            if(nums[Math.abs(nums[i])-1]>0){
+                nums[Math.abs(nums[i])-1]=-nums[Math.abs(nums[i])-1];
+            }
+        }
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]>0){
+                ans.add(i+1);
+            }
+        }
+        return ans;
 
     }
 
